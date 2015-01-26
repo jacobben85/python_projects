@@ -11,8 +11,7 @@ num_fetch_threads = 2
 enclosure_queue = Queue()
 
 # A real app wouldn't use hard-coded data...
-feed_urls = [ 'http://www.castsampler.com/cast/feed/rss/guest',
-             ]
+feed_urls = ['http://nfl.univision.com/feed/sports/american-football/nfl/2014/scheduleWithScores.xml', ]
 
 
 def downloadEnclosures(i, q):
@@ -41,7 +40,7 @@ for i in range(num_fetch_threads):
 # Download the feed(s) and put the enclosure URLs into
 # the queue.
 for url in feed_urls:
-    response = feedparser.parse(url, agent='fetch_podcasts.py')
+    response = feedparser.parse(url, agent='sample.py')
     for entry in response['entries']:
         for enclosure in entry.get('enclosures', []):
             print 'Queuing:', enclosure['url']
